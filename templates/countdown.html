@@ -4,32 +4,10 @@
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/app.css') }}">
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/flipclock.css') }}">
-
-    <style scoped>
-        .flip-clock-wrapper {
-            text-align: center;
-            position: relative;
-            width: 100%;
-            margin: 5em 25em;
-        }
-    </style>
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
-    <script src="{{ url_for('.static', filename='js/flipclock.min.js') }}"></script>
-
-    <script>
-        var clock = new FlipClock($('.countdown-clock'), {
-            autoStart: false,
-            countdown: false,
-            clockFace: 'DailyCounter'
-        });
-
-        clock.setTime({{ countdown.seconds_to_end }});
-
-        clock.start();
-    </script>
 
 {% endblock %}
 
@@ -45,9 +23,19 @@
             </div>
         </div>
         <hr/>
-        <div class="countdown-clock"></div>
+        <script src="{{ url_for('.static', filename='js/countdown.js') }}"></script>
+
+        <div class="countdown-clock" style="text-align: center;"></div>
+        <script>
+            var myCountdown1 = new Countdown({
+                time: "{{ countdown.seconds_to_end }}",
+                width: 600,
+                height: 100
+            });
+
+            document.getElementById('Stage_jbeeb_3').style.zoom = 2;
+        </script>
         <hr/>
-        {{ countdown.seconds_to_end }}
         <a href="{{ url_for('index') }}" class="btn btn-default cool-text">Home</a>
     </div>
 

@@ -1,0 +1,88 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/app.css') }}">
+
+    <style scoped>
+        form {
+            text-align: center;
+        }
+    </style>
+{% endblock %}
+
+{% block title %}Because you want to know how long it takes to get there ...{% endblock %}
+
+{% macro show_if_error(field_name, errors) %}
+    {% if errors[field_name] %}
+        <p class="alert-danger">
+            {{ errors[field_name][0] }}
+        </p>
+    {% endif %}
+{% endmacro %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {{ form.csrf_token }}
+            <div class="row">
+                <div class="col-lg-4">
+                    <label class="cool-text" for="name">Countdown to: </label>
+                </div>
+                <div class="col-lg-8">
+                    <input class="countdown-input" name="name" placeholder="my birthday" type="text"
+                           value="{{ form.name.data }}" required autocomplete="off">
+                </div>
+                {{ show_if_error('name', form.errors) }}
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="cool-text">When: </label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="countdown-input" name="year" placeholder="year" type="number"
+                           value="{{ form.year.data }}" required>
+                    {{ show_if_error('year', form.errors) }}
+                </div>
+                <div class="col-lg-1">
+                    <label class="cool-text">/</label>
+                </div>
+                <div class="col-lg-3">
+                    <input class="countdown-input" name="month" placeholder="month" type="number"
+                           value="{{ form.month.data }}" required>
+                    {{ show_if_error('month', form.errors) }}
+                </div>
+                <div class="col-lg-1">
+                    <label class="cool-text">/</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="countdown-input" name="day" placeholder="day" type="number" value="{{ form.day.data }}"
+                           required>
+                    {{ show_if_error('day', form.errors) }}
+                </div>
+            </div>
+            <hr/>
+            <div class="row">
+                <div class="col-lg-2">
+                    <label class="cool-text" for="countdown-name">At: </label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="countdown-input" name="hour" placeholder="hour" type="number"
+                           value="{{ form.hour.data }}" required>
+                    {{ show_if_error('hour', form.errors) }}
+                </div>
+                <div class="col-lg-1">
+                    <label class="cool-text">:</label>
+                </div>
+                <div class="col-lg-2">
+                    <input class="countdown-input" name="minute" placeholder="minute" type="number"
+                           value="{{ form.minute.data }}" required>
+                    {{ show_if_error('minute', form.errors) }}
+                </div>
+            </div>
+            <hr/>
+            <input type="submit" class="btn cool-text" value="Start counting down">
+        </form>
+    </div>
+{% endblock %}

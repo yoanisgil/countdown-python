@@ -1,0 +1,55 @@
+{% extends "bootstrap/base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/app.css') }}">
+    <link rel="stylesheet" href="{{ url_for('.static', filename='css/flipclock.css') }}">
+
+    <style scoped>
+        .flip-clock-wrapper {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            margin: 5em 25em;
+        }
+    </style>
+{% endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="{{ url_for('.static', filename='js/flipclock.min.js') }}"></script>
+
+    <script>
+        var clock = new FlipClock($('.countdown-clock'), {
+            autoStart: false,
+            countdown: false,
+            clockFace: 'DailyCounter'
+        });
+
+        clock.setTime({{ countdown.seconds_to_end }});
+
+        clock.start();
+    </script>
+
+{% endblock %}
+
+{% block title %}{{ countdown.name }}{% endblock %}
+
+
+{% block content %}
+    <div class="container" style="text-align: center;">
+        <div class="row">
+            <div class="col-lg-12">
+                <label class="cool-text" for="name">Countdown to {{ countdown.name }}
+                </label>
+            </div>
+        </div>
+        <hr/>
+        <div class="countdown-clock"></div>
+        <hr/>
+        {{ countdown.seconds_to_end }}
+        <a href="{{ url_for('index') }}" class="btn btn-default cool-text">Home</a>
+    </div>
+
+
+{% endblock %}

@@ -51,6 +51,15 @@ code {
     font-size: 5em;
 }
 
+.cool-text-small {
+    font-family: "Amatic Regular", san-serif;
+    font-size: 2.5em;
+}
+
+.email {
+    color: blue;
+}
+
 .countdown-input {
     font-family: "Amatic Regular", san-serif;
     font-size: 4em;

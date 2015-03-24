@@ -4,6 +4,13 @@
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/app.css') }}">
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/flipclock.css') }}">
+
+    <style scoped>
+        .container {
+            text-align: center;
+        }
+    </style>
+
 {% endblock %}
 
 {% block scripts %}
@@ -11,7 +18,7 @@
 
 {% endblock %}
 
-{% block title %}{{ countdown.name }}{% endblock %}
+{% block title %}Counting down to {{ countdown.name }}{% endblock %}
 
 
 {% block content %}
@@ -37,7 +44,10 @@
         </script>
         <hr/>
         <a href="{{ url_for('index') }}" class="btn btn-default cool-text">Home</a>
+
+        <hr/>
+        <h1 class="cool-text-small"> Found a bug? Send me an email to <span
+                class="email">gil dot yoanis at gmail dot com</span>
+        </h1>
     </div>
-
-
 {% endblock %}

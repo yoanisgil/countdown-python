@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ url_for('.static', filename='css/app.css') }}">
 
     <style scoped>
-        form {
+        .container {
             text-align: center;
         }
     </style>
@@ -57,7 +57,8 @@
                     <label class="cool-text">/</label>
                 </div>
                 <div class="col-lg-2">
-                    <input class="countdown-input" name="day" placeholder="day" type="number" value="{{ form.day.data }}"
+                    <input class="countdown-input" name="day" placeholder="day" type="number"
+                           value="{{ form.day.data }}"
                            required>
                     {{ show_if_error('day', form.errors) }}
                 </div>
@@ -84,5 +85,10 @@
             <hr/>
             <input type="submit" class="btn cool-text" value="Start counting down">
         </form>
+
+        <hr/>
+        <h1 class="cool-text-small"> Found a bug? Send me an email to <span
+                class="email">gil dot yoanis at gmail dot com</span>
+        </h1>
     </div>
 {% endblock %}

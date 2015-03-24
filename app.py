@@ -5,6 +5,7 @@ from forms import CountdownForm
 from flask.ext.sqlalchemy import SQLAlchemy
 from pytz import timezone
 from datetime import datetime
+import os
 
 
 def create_app():
@@ -15,7 +16,9 @@ def create_app():
 
 app = create_app()
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app_path = os.path.dirname(os.path.realpath(__file__))
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////%s' % (os.path.join(app_path, 'app.db'))
 app.config['CSRF_ENABLED'] = True
 app.config['SECRET_KEY'] = '8}8:qvJs2UL2vs24+qUHPw)60ZZp@L'
 

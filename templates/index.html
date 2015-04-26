@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-lg-8">
                     <input class="countdown-input" name="name" placeholder="my birthday" type="text"
-                           value="{{ form.name.data }}" required autocomplete="off">
+                           value="{{ form.name.data }}" required autocomplete="off" autofocus="">
                 </div>
                 {{ show_if_error('name', form.errors) }}
             </div>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-lg-3">
                     <input class="countdown-input" name="month" placeholder="month" type="number"
-                           value="{{ form.month.data }}" required>
+                           value="{{ form.month.data }}" required min="1" max="12">
                     {{ show_if_error('month', form.errors) }}
                 </div>
                 <div class="col-lg-1">
@@ -58,7 +58,7 @@
                 </div>
                 <div class="col-lg-2">
                     <input class="countdown-input" name="day" placeholder="day" type="number"
-                           value="{{ form.day.data }}"
+                           value="{{ form.day.data }}" min="1" max="31"
                            required>
                     {{ show_if_error('day', form.errors) }}
                 </div>
@@ -70,7 +70,7 @@
                 </div>
                 <div class="col-lg-2">
                     <input class="countdown-input" name="hour" placeholder="hour" type="number"
-                           value="{{ form.hour.data }}" required>
+                           value="{{ form.hour.data }}" required min="0" max="23">
                     {{ show_if_error('hour', form.errors) }}
                 </div>
                 <div class="col-lg-1">
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-lg-2">
                     <input class="countdown-input" name="minute" placeholder="minute" type="number"
-                           value="{{ form.minute.data }}" required>
+                           value="{{ form.minute.data }}" required min="0" max="59">
                     {{ show_if_error('minute', form.errors) }}
                 </div>
             </div>

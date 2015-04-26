@@ -66,11 +66,19 @@ def index():
     if request.method == 'POST' and form.validate():
         count_down = Countdown(form.name.data, form.year.data, form.month.data, form.day.data, form.hour.data,
                                form.minute.data,
-                               'America/Chicago')
+                               'America/New_York')
         db.session.add(count_down)
         db.session.commit()
 
         return redirect(url_for('countdown', countdown_id=count_down.id))
+
+    now = datetime.now()
+
+    form.year.data = now.year
+    form.month.data = now.month
+    form.day.data = now.day
+    form.hour.data = now.hour
+    form.minute.data = now.minute
 
     return render_template('index.html', form=form)
 

@@ -1,27 +1,21 @@
-countdown:
-    build: . 
-    environment:
-        - NUM_WORKERS=1
-        - APP_NAME=countdown
-        - WSGI_MODULE=app
-        - WSGI_APP=app
-        - PYTHONPATH=/srv/app
-        - APP_LISTEN_ON=0.0.0.0
-        - APP_DEBUG=True
-        - PYTHONUNBUFFERED=1
-        - DB_DIR=/var/lib/countdown
-    ports:
-        - "5000:80/tcp"
-    volumes:
-        - ./data:/var/lib/countdown
-    links:
-        - syslog
-    log_driver: syslog
-    log_opt: 
-        syslog-address: "udp://0.0.0.0:5514"
-        syslog-tag: "countdown"
-syslog:
-    image: voxxit/rsyslog 
-    ports:
-        - "5514:514/udp"
-    container_name: rsyslog
+version: "2"
+
+services:
+    countdown:
+        image: yoanisgil/countdown-python
+        build: . 
+        environment:
+            - NUM_WORKERS=1
+            - APP_NAME=countdown
+            - WSGI_MODULE=app
+            - WSGI_APP=app
+            - PYTHONPATH=/srv/app
+            - APP_LISTEN_ON=0.0.0.0
+            - APP_DEBUG=True
+            - PYTHONUNBUFFERED=1
+            - DB_DIR=/var/lib/countdown
+        ports:
+            - "5000:80/tcp"
+        volumes:
+            - ./data:/var/lib/countdown
+
